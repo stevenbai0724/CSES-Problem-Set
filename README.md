@@ -1,2 +1,2 @@
 # CSES-Problem-Set
-Solutions for https://cses.fi/problemset/list/
+My solutions for https://cses.fi/problemset/list/
