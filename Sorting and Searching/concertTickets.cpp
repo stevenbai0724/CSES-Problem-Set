@@ -1,52 +1,40 @@
+//https://cses.fi/problemset/task/1091
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 signed main(){
     cin.tie(nullptr)->sync_with_stdio(false);
 
+    int n, m; cin>>n>>m;
 
-    int n, m;
-    cin>>n>>m;  
-    vector<int>tik(n+2);
-    vector<int>cus(m+1);
+    multiset<int>s;
+    vector<int>arr(m+1);
 
     for(int i=1;i<=n;i++){
-        cin>>tik[i];
+        int x; cin>>x;
+        s.insert(x);
+    }
+    s.insert(1e9);
+    for(int i=1;i<=m;i++){
+        cin>>arr[i];
     }
     for(int i=1;i<=m;i++){
-        cin>>cus[i];
-    }
-    tik[n+1] = 1e18;
-    sort(tik.begin(), tik.end());
+        int num = arr[i];
 
-    for(int i =1;i<=m;i++){
-        int c = cus[i];
-        int l = 0;
-        int r = tik.size()+1;
-
-        while(l+1<r){
-            int m = (l+r)/2;
-
-            if(tik[m]<=c) l = m;
-            else r = m;
-
-        }
-        if(l ==0){
-            cout<<-1<<"\n";
-            continue;
-        }
-        if(l>=tik.size()){
-            cout<<tik[tik.size()]<<"\n";
-            tik.erase(tik.begin()+tik.size());
+        if(s.find(num)!=s.end()){
+            s.erase(s.find(num));
+            cout<<num<<"\n";
         }
         else{
-            cout<<tik[l]<<"\n";
-            tik.erase(tik.begin()+l);
+            auto x = s.upper_bound(num);
+            if(x==s.begin() || x==s.end()) cout<<-1<<"\n";
+            else{
+                x--;
+                cout<<*x<<"\n";
+                s.erase(x);
+            }
         }
-       
     }
-
-
-
+    
     return 0;
 }
