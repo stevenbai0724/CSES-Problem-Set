@@ -1,5 +1,5 @@
 //https://cses.fi/problemset/task/1194
- 
+//TLE, 18 out of 21 points
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
